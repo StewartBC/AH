@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" src="images/favicon.jpeg">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <title>Auction House Corruption</title>
+</head>
+
+<style>
+  button {
+    margin-bottom: 20px
+  }
+
+  .gone {
+    display: none !important;
+  }
+
+  .item {
+    margin-bottom: 50px;
+  }
+</style>
+
+<body>
+  <div id="wrap">
+    <div id="main" class="container clear-top">
+      <nav class="container-fluid-nav text-center">
+        <div class="container-fluid mainNav">
+          <div class="navbar-header">
+            <h1 id="mainHeader" class="navbar-brand gone">Choose a Corruption</h1>
+          </div>
+        </div>
+      </nav>
+      <nav class="container-fluid-nav text-center">
+        <div class="container-fluid mainNav">
+          <div class="navbar-header">
+            <h1 id="scanningHeader" class="navbar-brand">Scanning Auctions...</h1>
+          </div>
+        </div>
+      </nav>
+      <div id="mainContainer">
+        <div id="buttonContainer" class="gone">
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Expedient I" class="btn btn-primary center-block corruptButton" data-name="Expedient I">Expedient I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Expedient II" class="btn btn-primary center-block corruptButton" data-name="Expedient II">Expedient II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Expedient II" class="btn btn-primary center-block corruptButton" data-name="Expedient III">Expedient II</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Masterful I" class="btn btn-primary center-block corruptButton" data-name="Masterful I">Masterful I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Masterful II" class="btn btn-primary center-block corruptButton" data-name="Masterful II">Masterful II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Masterful III" class="btn btn-primary center-block corruptButton" data-name="Masterful III">Masterful III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Severe I" class="btn btn-primary center-block corruptButton" data-name="Severe I">Severe I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Severe II" class="btn btn-primary center-block corruptButton" data-name="Severe II">Severe II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Severe III" class="btn btn-primary center-block corruptButton" data-name="Severe III">Severe III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Versatile I" class="btn btn-primary center-block corruptButton" data-name="Versatile I">Versatile I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Versatile II" class="btn btn-primary center-block corruptButton" data-name="Versatile II">Versatile II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Versatile III" class="btn btn-primary center-block corruptButton" data-name="Versatile III">Versatile III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Strikethrough I" class="btn btn-primary center-block corruptButton" data-name="Strikethrough I">Strikethrough I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Strikethrough II" class="btn btn-primary center-block corruptButton" data-name="Strikethrough II">Strikethrough II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Strikethrough III" class="btn btn-primary center-block corruptButton" data-name="Strikethrough III">Strikethrough III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Racing Pulse I" class="btn btn-primary center-block corruptButton" data-name="Racing Pulse I">Racing Pulse I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Racing Pulse II" class="btn btn-primary center-block corruptButton" data-name="Racing Pulse II">Racing Pulse II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Racing Pulse III" class="btn btn-primary center-block corruptButton" data-name="Racing Pulse III">Racing Pulse III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Deadly Momentum I" class="btn btn-primary center-block corruptButton" data-name="Deadly Momentum I">Deadly Momentum I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Deadly Momentum II" class="btn btn-primary center-block corruptButton" data-name="Deadly Momentum II">Deadly Momentum II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Deadly Momentum III" class="btn btn-primary center-block corruptButton" data-name="Deadly Momentum III">Deadly Momentum III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Surging Vitality I" class="btn btn-primary center-block corruptButton" data-name="Surging Vitality I">Surging Vitality I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Surging Vitality II" class="btn btn-primary center-block corruptButton" data-name="Surging Vitality II">Surging Vitality II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Surging Vitality III" class="btn btn-primary center-block corruptButton" data-name="Surging Vitality III">Surging Vitality III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Honed Mind I" class="btn btn-primary center-block corruptButton" data-name="Honed Mind I">Honed Mind I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Honed Mind II" class="btn btn-primary center-block corruptButton" data-name="Honed Mind II">Honed Mind II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Honed Mind III" class="btn btn-primary center-block corruptButton" data-name="Honed Mind III">Honed Mind III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Echoing Void I" class="btn btn-primary center-block corruptButton" data-name="Echoing Void I">Echoing Void I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Echoing Void II" class="btn btn-primary center-block corruptButton" data-name="Echoing Void II">Echoing Void II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Echoing Void III" class="btn btn-primary center-block corruptButton" data-name="Echoing Void III">Echoing Void III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Infinite Stars I" class="btn btn-primary center-block corruptButton" data-name="Infinite Stars I">Infinite Stars I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Infinite Stars II" class="btn btn-primary center-block corruptButton" data-name="Infinite Stars II">Infinite Stars II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Infinite Stars III" class="btn btn-primary center-block corruptButton" data-name="Infinite Stars III">Infinite Stars III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Ineffable Truth I" class="btn btn-primary center-block corruptButton" data-name="Ineffable Truth I">Ineffable Truth I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Ineffable Truth II" class="btn btn-primary center-block corruptButton" data-name="Ineffable Truth II">Ineffable Truth II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Ineffable Truth III" class="btn btn-primary center-block corruptButton" data-name="Ineffable Truth III">Ineffable Truth III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Twilight Devastation I" class="btn btn-primary center-block corruptButton" data-name="Twilight Devastation I">Twilight Devastation I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Twilight Devastation II" class="btn btn-primary center-block corruptButton" data-name="Twilight Devastation II">Twilight Devastation II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Twilight Devastation III" class="btn btn-primary center-block corruptButton" data-name="Twilight Devastation III">Twilight Devastation III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Twisted Appendage I" class="btn btn-primary center-block corruptButton" data-name="Twisted Appendage I">Twisted Appendage I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Twisted Appendage II" class="btn btn-primary center-block corruptButton" data-name="Twisted Appendage II">Twisted Appendage II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Twisted Appendage III" class="btn btn-primary center-block corruptButton" data-name="Twisted Appendage III">Twisted Appendage III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" id="Void Ritual I" class="btn btn-primary center-block corruptButton" data-name="Void Ritual I">Void Ritual I</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Void Ritual II" class="btn btn-primary center-block corruptButton" data-name="Void Ritual II">Void Ritual II</button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Void Ritual III" class="btn btn-primary center-block corruptButton" data-name="Void Ritual III">Void Ritual III</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+              <button type="button" id="Gushing Wound" class="btn btn-primary center-block corruptButton" data-name="Gushing Wound">Gushing Wound</button>
+            </div>
+            <div class="col-md-4">
+            </div>
+          </div>
+        </div>
+        <div id="itemContainer">
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <button type="button" id="restart" class="btn btn-primary center-block corruptButton gone" data-name="restart">Choose Another Corruption</button>
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+
+</html>
