@@ -582,9 +582,11 @@ var numRings = 0;
 var numBelts = 0;
 var numShields = 0;
 var numOffhands = 0;
+var dots = 0;
 
 var scanningAuctions = setInterval(function () {
-    console.log("checking")
+    console.log("checking");
+    dots++;
     if (realmsChecked === realms.length) {
         clearInterval(scanningAuctions);
         clearInterval(failsafe);
@@ -594,11 +596,11 @@ var scanningAuctions = setInterval(function () {
         console.log("done");
     } else {
         console.log(items.length);
-        if (realmsChecked % 3 === 1) {
+        if (dots % 3 === 1) {
             $("#scanningHeader").html("Scanning Auctions.");
-        } else if (realmsChecked % 3 === 2) {
+        } else if (dots % 3 === 2) {
             $("#scanningHeader").html("Scanning Auctions..");
-        } if (realmsChecked % 3 === 0) {
+        } if (dots % 3 === 0) {
             $("#scanningHeader").html("Scanning Auctions...");
         }
     }
@@ -787,7 +789,7 @@ $(".corruptButton").click(function () {
                     $(`#boots${numBoots}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>
                         <h4>Socketed</h4>       
                     </div>
@@ -796,7 +798,7 @@ $(".corruptButton").click(function () {
                     $(`#boots${numBoots}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>       
                     </div>
                 `);
@@ -807,7 +809,7 @@ $(".corruptButton").click(function () {
                     $(`#pants${numPants}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>
                         <h4>Socketed</h4>       
                     </div>
@@ -816,7 +818,7 @@ $(".corruptButton").click(function () {
                     $(`#pants${numPants}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>       
                     </div>
                 `);
@@ -827,7 +829,7 @@ $(".corruptButton").click(function () {
                     $(`#belt${numBelts}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>
                         <h4>Socketed</h4>       
                     </div>
@@ -836,7 +838,7 @@ $(".corruptButton").click(function () {
                     $(`#belt${numBelts}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>       
                     </div>
                 `);
@@ -847,7 +849,7 @@ $(".corruptButton").click(function () {
                     $(`#ring${numRings}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>
                         <h4>Socketed</h4>       
                     </div>
@@ -856,7 +858,7 @@ $(".corruptButton").click(function () {
                     $(`#ring${numRings}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>       
                     </div>
                 `);
@@ -867,7 +869,7 @@ $(".corruptButton").click(function () {
                     $(`#shield${numShields}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>
                         <h4>Socketed</h4>       
                     </div>
@@ -876,7 +878,7 @@ $(".corruptButton").click(function () {
                     $(`#shield${numShields}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>       
                     </div>
                 `);
@@ -887,7 +889,7 @@ $(".corruptButton").click(function () {
                     $(`#offhand${numOffhands}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>
                         <h4>Socketed</h4>       
                     </div>
@@ -896,32 +898,12 @@ $(".corruptButton").click(function () {
                     $(`#offhand${numOffhands}`).append(`
                     <div class="item">
                         <h4>iLvl: ${item.ilvl}</h4>
-                        <h4>Price: ${item.price}G</h4>
+                        <h4>Price: ${item.priceString}G</h4>
                         <h4>Realm: ${item.realm}</h4>       
                     </div>
                 `);
                 }
             }
-            // if (item.socket) {
-            //     $("#itemContainer").append(`
-            //     <div>
-            //         <h1>${item.description}</h1>
-            //         <h4>iLvl: ${item.ilvl}</h4>
-            //         <h4>Price: ${item.price}G</h4>
-            //         <h4>Realm: ${item.realm}</h4>
-            //         <h4>Socketed</h4>       
-            //     </div>
-            // `);
-            // } else {
-            //     $("#itemContainer").append(`
-            //     <div>
-            //         <h1>${item.description}</h1>
-            //         <h4>iLvl: ${item.ilvl}</h4>
-            //         <h4>Price: ${item.price}G</h4>
-            //         <h4>Realm: ${item.realm}</h4>       
-            //     </div>
-            // `);
-            // }
         }
     });
 });
