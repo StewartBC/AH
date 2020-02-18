@@ -569,7 +569,7 @@ var corruptionReference = [
         name: "Gushing Wound",
         id: 6573
     }
-]
+];
 var items = [];
 var realmsChecked = 0;
 var selectedCorruption = "";
@@ -584,40 +584,40 @@ var numShields = 0;
 var numOffhands = 0;
 var dots = 0;
 
-var scanningAuctions = setInterval(function () {
-    console.log("checking");
-    dots++;
-    if (realmsChecked === realms.length) {
-        clearInterval(scanningAuctions);
-        clearInterval(failsafe);
-        $("#scanningHeader").addClass("gone");
-        $("#mainHeader").removeClass("gone");
-        $("#buttonContainer").removeClass("gone");
-        console.log("done");
-    } else {
-        console.log(items.length);
-        if (dots % 3 === 1) {
-            $("#scanningHeader").html("Scanning Auctions.");
-        } else if (dots % 3 === 2) {
-            $("#scanningHeader").html("Scanning Auctions..");
-        } if (dots % 3 === 0) {
-            $("#scanningHeader").html("Scanning Auctions...");
-        }
-    }
-}, 1000);
+// var scanningAuctions = setInterval(function () {
+//     console.log("checking");
+//     dots++;
+//     if (realmsChecked === realms.length) {
+//         clearInterval(scanningAuctions);
+//         clearInterval(failsafe);
+//         $("#scanningHeader").addClass("gone");
+//         $("#mainHeader").removeClass("gone");
+//         $("#buttonContainer").removeClass("gone");
+//         console.log("done");
+//     } else {
+//         console.log(items.length);
+//         if (dots % 3 === 1) {
+//             $("#scanningHeader").html("Scanning Auctions.");
+//         } else if (dots % 3 === 2) {
+//             $("#scanningHeader").html("Scanning Auctions..");
+//         } if (dots % 3 === 0) {
+//             $("#scanningHeader").html("Scanning Auctions...");
+//         }
+//     }
+// }, 1000);
 
-var failsafe = setInterval(function () {
-    console.log("checking failsafe");
-    if (lastCheck === realmsChecked) {
-        clearInterval(scanningAuctions);
-        clearInterval(failsafe);
-        $("#scanningHeader").addClass("gone");
-        $("#mainHeader").removeClass("gone");
-        $("#buttonContainer").removeClass("gone");
-        console.log("failsafe engaged");
-    }
-    lastCheck = realmsChecked;
-}, 10000);
+// var failsafe = setInterval(function () {
+//     console.log("checking failsafe");
+//     if (lastCheck === realmsChecked) {
+//         clearInterval(scanningAuctions);
+//         clearInterval(failsafe);
+//         $("#scanningHeader").addClass("gone");
+//         $("#mainHeader").removeClass("gone");
+//         $("#buttonContainer").removeClass("gone");
+//         console.log("failsafe engaged");
+//     }
+//     lastCheck = realmsChecked;
+// }, 10000);
 
 
 $(".corruptButton").click(function () {
@@ -922,47 +922,56 @@ $("#restart").click(function () {
     numOffhands = 0;
 });
 
-realms.forEach(realm => {
-    $.ajax({
-        type: "GET",
-        url: `/auctions/${realm.id}`
-    }).then(function (auctions) {
-        realmsChecked++;
-        auctions.forEach(auction => {
-            itemReference.forEach(reference => {
-                if (auction.item.id === reference.id) {
-                    var item = {
-                        description: reference.description,
-                        price: Math.round(auction.buyout / 10000),
-                        priceString: "",
-                        realm: realm.names[0],
-                        corruption: "",
-                        ilvl: 0,
-                        socket: false
-                    }
-                    corruptionReference.forEach(corruption => {
-                        auction.item.bonus_lists.forEach(bonus => {
-                            if (bonus === 4822) {
-                                item.ilvl = 445;
-                            } else if (bonus === 4823) {
-                                item.ilvl = 460;
-                            } else if (bonus === 4824) {
-                                item.ilvl = 475;
-                            } else if(bonus === 4825) {
-                                item.ilvl = 430;
-                            }
-                            if (corruption.id === bonus) {
-                                item.corruption = corruption.name;
-                            }
-                            if (bonus === 1808) {
-                                item.socket = true;
-                            }
-                        });
-                    });
-                    item.priceString = item.price.toLocaleString();
-                    items.push(item);
-                }
-            });
-        });
-    });
+$.ajax({
+    type: "GET",
+    url: `/auctions`
+}).then(function (result) {
+    console.log(result)
+    items = result;
+    realmsChecked++;
 });
+
+// realms.forEach(realm => {
+//     $.ajax({
+//         type: "GET",
+//         url: `/auctions/${realm.id}`
+//     }).then(function (auctions) {
+//         realmsChecked++;
+//         auctions.forEach(auction => {
+//             itemReference.forEach(reference => {
+//                 if (auction.item.id === reference.id) {
+//                     var item = {
+//                         description: reference.description,
+//                         price: Math.round(auction.buyout / 10000),
+//                         priceString: "",
+//                         realm: realm.names[0],
+//                         corruption: "",
+//                         ilvl: 0,
+//                         socket: false
+//                     }
+//                     corruptionReference.forEach(corruption => {
+//                         auction.item.bonus_lists.forEach(bonus => {
+//                             if (bonus === 4822) {
+//                                 item.ilvl = 445;
+//                             } else if (bonus === 4823) {
+//                                 item.ilvl = 460;
+//                             } else if (bonus === 4824) {
+//                                 item.ilvl = 475;
+//                             } else if(bonus === 4825) {
+//                                 item.ilvl = 430;
+//                             }
+//                             if (corruption.id === bonus) {
+//                                 item.corruption = corruption.name;
+//                             }
+//                             if (bonus === 1808) {
+//                                 item.socket = true;
+//                             }
+//                         });
+//                     });
+//                     item.priceString = item.price.toLocaleString();
+//                     items.push(item);
+//                 }
+//             });
+//         });
+//     });
+// });
