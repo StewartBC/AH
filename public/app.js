@@ -584,47 +584,47 @@ var numShields = 0;
 var numOffhands = 0;
 var dots = 0;
 
-// var scanningAuctions = setInterval(function () {
-//     console.log("checking");
-//     dots++;
-//     if (realmsChecked === realms.length) {
-//         clearInterval(scanningAuctions);
-//         clearInterval(failsafe);
-//         $("#scanningHeader").addClass("gone");
-//         $("#mainHeader").removeClass("gone");
-//         $("#buttonContainer").removeClass("gone");
-//         console.log("done");
-//     } else {
-//         console.log(items.length);
-//         if (dots % 3 === 1) {
-//             $("#scanningHeader").html("Scanning Auctions.");
-//         } else if (dots % 3 === 2) {
-//             $("#scanningHeader").html("Scanning Auctions..");
-//         } if (dots % 3 === 0) {
-//             $("#scanningHeader").html("Scanning Auctions...");
-//         }
-//     }
-// }, 1000);
+var scanningAuctions = setInterval(function () {
+    console.log("checking");
+    dots++;
+    if (realmsChecked === realms.length) {
+        clearInterval(scanningAuctions);
+        clearInterval(failsafe);
+        $("#scanningHeader").addClass("gone");
+        $("#mainHeader").removeClass("gone");
+        $("#buttonContainer").removeClass("gone");
+        console.log("done");
+    } else {
+        console.log(items.length);
+        if (dots % 3 === 1) {
+            $("#scanningHeader").html("Scanning Auctions.");
+        } else if (dots % 3 === 2) {
+            $("#scanningHeader").html("Scanning Auctions..");
+        } if (dots % 3 === 0) {
+            $("#scanningHeader").html("Scanning Auctions...");
+        }
+    }
+}, 1000);
 
-// var failsafe = setInterval(function () {
-//     console.log("checking failsafe");
-//     if (lastCheck === realmsChecked) {
-//         clearInterval(scanningAuctions);
-//         clearInterval(failsafe);
-//         $("#scanningHeader").addClass("gone");
-//         $("#mainHeader").removeClass("gone");
-//         $("#buttonContainer").removeClass("gone");
-//         console.log("failsafe engaged");
-//     }
-//     lastCheck = realmsChecked;
-// }, 10000);
+var failsafe = setInterval(function () {
+    console.log("checking failsafe");
+    if (lastCheck === realmsChecked) {
+        clearInterval(scanningAuctions);
+        clearInterval(failsafe);
+        $("#scanningHeader").addClass("gone");
+        $("#mainHeader").removeClass("gone");
+        $("#buttonContainer").removeClass("gone");
+        console.log("failsafe engaged");
+    }
+    lastCheck = realmsChecked;
+}, 10000);
 
 
 $(".corruptButton").click(function () {
-    items.sort(function(a, b) {
+    items.sort(function (a, b) {
         if (b.ilvl > a.ilvl) {
             return 1;
-        } else if (b.ilvl < a.ilvl){
+        } else if (b.ilvl < a.ilvl) {
             return -1;
         } else {
             if (b.price > a.price) {
@@ -689,14 +689,14 @@ $(".corruptButton").click(function () {
     <div class="collapse" id="offhand">
     </div>
     `);
-    for(i = 1; i < 199; i = i + 3) {
+    for (i = 1; i < 199; i = i + 3) {
         $("#gloves").append(`
             <div class="row">
                 <div id="gloves${i}" class="col-md-4">
                 </div>
-                <div id="gloves${i+1}" class="col-md-4">
+                <div id="gloves${i + 1}" class="col-md-4">
                 </div>
-                <div id="gloves${i+2}" class="col-md-4">
+                <div id="gloves${i + 2}" class="col-md-4">
                 </div>
             </div>
         `);
@@ -704,9 +704,9 @@ $(".corruptButton").click(function () {
         <div class="row">
             <div id="boots${i}" class="col-md-4">
             </div>
-            <div id="boots${i+1}" class="col-md-4">
+            <div id="boots${i + 1}" class="col-md-4">
             </div>
-            <div id="boots${i+2}" class="col-md-4">
+            <div id="boots${i + 2}" class="col-md-4">
             </div>
         </div>
         `);
@@ -714,9 +714,9 @@ $(".corruptButton").click(function () {
         <div class="row">
             <div id="pants${i}" class="col-md-4">
             </div>
-            <div id="pants${i+1}" class="col-md-4">
+            <div id="pants${i + 1}" class="col-md-4">
             </div>
-            <div id="pants${i+2}" class="col-md-4">
+            <div id="pants${i + 2}" class="col-md-4">
             </div>
         </div>
         `);
@@ -724,9 +724,9 @@ $(".corruptButton").click(function () {
         <div class="row">
             <div id="belt${i}" class="col-md-4">
             </div>
-            <div id="belt${i+1}" class="col-md-4">
+            <div id="belt${i + 1}" class="col-md-4">
             </div>
-            <div id="belt${i+2}" class="col-md-4">
+            <div id="belt${i + 2}" class="col-md-4">
             </div>
         </div>
         `);
@@ -734,9 +734,9 @@ $(".corruptButton").click(function () {
         <div class="row">
             <div id="ring${i}" class="col-md-4">
             </div>
-            <div id="ring${i+1}" class="col-md-4">
+            <div id="ring${i + 1}" class="col-md-4">
             </div>
-            <div id="ring${i+2}" class="col-md-4">
+            <div id="ring${i + 2}" class="col-md-4">
             </div>
         </div>
         `);
@@ -744,9 +744,9 @@ $(".corruptButton").click(function () {
         <div class="row">
             <div id="shield${i}" class="col-md-4">
             </div>
-            <div id="shield${i+1}" class="col-md-4">
+            <div id="shield${i + 1}" class="col-md-4">
             </div>
-            <div id="shield${i+2}" class="col-md-4">
+            <div id="shield${i + 2}" class="col-md-4">
             </div>
         </div>
         `);
@@ -754,9 +754,9 @@ $(".corruptButton").click(function () {
         <div class="row">
             <div id="offhand${i}" class="col-md-4">
             </div>
-            <div id="offhand${i+1}" class="col-md-4">
+            <div id="offhand${i + 1}" class="col-md-4">
             </div>
-            <div id="offhand${i+2}" class="col-md-4">
+            <div id="offhand${i + 2}" class="col-md-4">
             </div>
         </div>
         `);
@@ -922,14 +922,29 @@ $("#restart").click(function () {
     numOffhands = 0;
 });
 
-$.ajax({
-    type: "GET",
-    url: `/auctions`
-}).then(function (result) {
-    console.log(result)
-    items = result;
-    realmsChecked++;
-});
+var recentRealmsChecked = 0;
+
+function getItems() {
+    if (realmsChecked < realms.length) {
+        $.ajax({
+            type: "GET",
+            url: `/auctions`
+        }).then(function (result) {
+            console.log(result.items.length)
+            recentRealmsChecked = result.realmsChecked;
+            items = result.items;
+            realmsChecked = result.realmsChecked;
+        });
+
+    }
+
+    
+}
+
+getItems();
+
+setInterval(function(){ getItems(); }, 1000);
+
 
 // realms.forEach(realm => {
 //     $.ajax({

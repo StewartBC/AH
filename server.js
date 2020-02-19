@@ -582,8 +582,10 @@ var corruptionReference = [
         id: 6573
     }
 ];
-items = [];
+var items = [];
+var realmsChecked = 0;
 function getAuctions() {
+    realmsChecked = 0;
     console.log(token)
     var itemList = [];
     realms.forEach(realm => {
@@ -596,6 +598,7 @@ function getAuctions() {
                     blizzard.defaults.token = response.data.access_token
                 });
             } else {
+                realmsChecked++;
                 response.body.auctions.forEach(auction => {
                     itemReference.forEach(reference => {
                         if (auction.item.id === reference.id) {
@@ -656,7 +659,10 @@ blizzard.getApplicationToken().then(response => {
 app.get("/auctions", function (req, res) {
     console.log("incoming request");
     console.log(items.length)
-    res.send(items);
+    res.send({
+        items: items,
+        realmsChecked: realmsChecked
+    });
 });
 
 setTimeout(function(){ getAuctions(); }, 3000);
