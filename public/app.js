@@ -619,7 +619,7 @@ var failsafe = setInterval(function () {
         console.log("failsafe engaged");
     }
     lastCheck = realmsChecked;
-}, 10000);
+}, 20000);
 
 function playNotification() {
     var notificationAudio = new Audio('notification.mp3');
@@ -940,6 +940,7 @@ var recentRealmsChecked = 0;
 
 function getItems() {
     if (realmsChecked < realms.length) {
+        clearInterval(getItemsInterval);
         $.ajax({
             type: "GET",
             url: `/auctions`
@@ -998,7 +999,8 @@ function getNewItems() {
 getItems();
 
 setInterval(function(){ getNewItems(); }, 36000);
-setInterval(function(){ getItems(); }, 1000);
+
+var getItemsInterval = setInterval(function(){ getItems(); }, 1000);
 
 
 // realms.forEach(realm => {
