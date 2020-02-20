@@ -964,14 +964,39 @@ function getItems() {
             items = result.items;
             realmsChecked = result.realmsChecked;
         });
+    }  
+}
 
-    }
-
-    
+function getNewItems() {
+        $.ajax({
+            type: "GET",
+            url: `/auctions`
+        }).then(function (result) {
+            console.log(result.items.length)
+            newItems = [];
+            result.items.forEach(newItem => {
+                items.forEach(item => {
+                    if (newItem !== item) {
+                        newItems.push(newItem);
+                    }
+                });
+            });
+            notifications.forEach(notification => {
+                newItems.forEach(newItem => {
+                    if (newItem.description === notification) {
+                        playNotification();
+                    }
+                });
+            });
+            recentRealmsChecked = result.realmsChecked;
+            items = result.items;
+            realmsChecked = result.realmsChecked;
+        }); 
 }
 
 getItems();
 
+setInterval(function(){ getNewItems(); }, 1000);
 setInterval(function(){ getItems(); }, 1000);
 
 
