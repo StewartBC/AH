@@ -972,6 +972,7 @@ function getNewItems() {
             type: "GET",
             url: `/auctions`
         }).then(function (result) {
+            console.log("new items");
             console.log(result.items.length)
             newItems = [];
             result.items.forEach(newItem => {
