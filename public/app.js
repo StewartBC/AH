@@ -621,9 +621,10 @@ var failsafe = setInterval(function () {
     lastCheck = realmsChecked;
 }, 20000);
 
-function playNotification() {
+function playNotification(corruptionToNotify) {
     var notificationAudio = new Audio('notification.mp3');
     notificationAudio.play();
+    alert(`New ${corruptionToNotify} item available!`);
 }
 
 
@@ -945,22 +946,6 @@ function getItems() {
             type: "GET",
             url: `/auctions`
         }).then(function (result) {
-            console.log(result.items.length)
-            newItems = [];
-            result.items.forEach(newItem => {
-                items.forEach(item => {
-                    if (newItem !== item) {
-                        newItems.push(newItem);
-                    }
-                });
-            });
-            notifications.forEach(notification => {
-                newItems.forEach(newItem => {
-                    if (newItem.description === notification) {
-                        playNotification();
-                    }
-                });
-            });
             recentRealmsChecked = result.realmsChecked;
             items = result.items;
             realmsChecked = result.realmsChecked;
@@ -975,13 +960,19 @@ function getNewItems() {
         }).then(function (result) {
             console.log("new items");
             console.log(result.items.length)
-            newItems = [];
+            var newItems = [];
             result.items.forEach(newItem => {
+                var itemFound = false;
                 items.forEach(item => {
-                    if (newItem !== item) {
-                        newItems.push(newItem);
+                    if (newItem.description === item.description && newItem.realm === item.realm && newItem.price === item.price && newItem.corruption === item.corruption) {
+                        itemFound = true;
                     }
                 });
+                if (!itemFound) {
+                    console.log(newItem);
+                    newItems.push(newItem);
+                }
+                console.log(newItems.length)
             });
             notifications.forEach(notification => {
                 newItems.forEach(newItem => {
