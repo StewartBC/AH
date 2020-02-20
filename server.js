@@ -586,7 +586,7 @@ var items = [];
 var realmsChecked = 0;
 function getNewAuctions() {
     realmsChecked = 0;
-    console.log(token)
+    console.log(token + "new auction check")
     var itemList = [];
     realms.forEach(realm => {
         request(`https://us.api.blizzard.com/data/wow/connected-realm/${realm.id}/auctions?namespace=dynamic-us&locale=en_US&access_token=${token}`, { json: true }, function (error, response, html) {
