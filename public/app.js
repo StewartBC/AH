@@ -917,10 +917,10 @@ $(".corruptButton").click(function () {
     });
 });
 
-$("#notification").click(function () {
-    notifications.push(selectedCorruption);
-    alert(`${selectedCorruption} added to notifications.`);
-});
+// $("#notification").click(function () {
+//     notifications.push(selectedCorruption);
+//     alert(`${selectedCorruption} added to notifications.`);
+// });
 
 $("#restart").click(function () {
     $("#restart").addClass("gone");
@@ -991,7 +991,7 @@ function getNewItems() {
 
 getItems();
 
-setInterval(function(){ getNewItems(); }, 36000);
+// setInterval(function(){ getNewItems(); }, 36000);
 
 var getItemsInterval = setInterval(function(){ getItems(); }, 1000);
 
