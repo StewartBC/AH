@@ -583,6 +583,8 @@ var numBelts = 0;
 var numShields = 0;
 var numOffhands = 0;
 var dots = 0;
+var notifications = [];
+// var notifications = ["Echoing Void III", "Deadly Momentum III", "Expedient I", "Expedient II", "Expedient III", "Masterful I", "Masterful II", "Masterful III", "Severe I", "Severe II", "Severe III", "Versatile I", "Versatile II", "Versatile III", "Strikethrough I", "Strikethrough II", "Strikethrough III", "Racing Pulse I", "Racing Pulse II", "Racing Pulse III", "Deadly Momentum I", "Deadly Momentum II", "Deadly Momentum III", "Surging Vitality I", "Surging Vitality II", "Surging Vitality III", "Honed Mind I", "Surging Vitality II", "Surging Vitality III", "Honed Mind I", "Surging Vitality II", "Surging Vitality III", "Honed Mind I", "Honed Mind II", "Honed Mind III", "Echoing Void I", "Echoing Void III", "Infinite Stars I", "Infinite Stars II", "Infinite Stars III", "Echoing Void II", "Twilight Devastation I", "Twilight Devastation II", "Twilight Devastation III", "Twisted Appendage I", "Twisted Appendage II", "Twisted Appendage III", "Void Ritual I", "Void Ritual II", "Void Ritual III", "Ineffable Truth I", "Ineffable Truth II", "Gushing Wound"];
 
 var scanningAuctions = setInterval(function () {
     console.log("checking");
@@ -619,6 +621,11 @@ var failsafe = setInterval(function () {
     lastCheck = realmsChecked;
 }, 10000);
 
+function playNotification() {
+    var notificationAudio = new Audio('notification.mp3');
+    notificationAudio.play();
+}
+
 
 $(".corruptButton").click(function () {
     items.sort(function (a, b) {
@@ -640,6 +647,7 @@ $(".corruptButton").click(function () {
     $("#mainHeader").html(selectedCorruption);
     $("#buttonContainer").addClass("gone");
     $("#restart").removeClass("gone");
+    $("#notification").removeClass("gone");
     $("#itemContainer").append(`
     <button style="width: 280px; margin-bottom: 10px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#gloves" aria-expanded="false" aria-controls="gloves">
     Plate Gloves Show/Hide
@@ -908,8 +916,14 @@ $(".corruptButton").click(function () {
     });
 });
 
+$("#notification").click(function () {
+    notifications.push(selectedCorruption);
+    alert(`${selectedCorruption} added to notifications.`);
+});
+
 $("#restart").click(function () {
     $("#restart").addClass("gone");
+    $("#notification").addClass("gone");
     $("#buttonContainer").removeClass("gone");
     $("#itemContainer").empty();
     $("#mainHeader").html("Choose a Corruption");
@@ -931,6 +945,21 @@ function getItems() {
             url: `/auctions`
         }).then(function (result) {
             console.log(result.items.length)
+            newItems = [];
+            result.items.forEach(newItem => {
+                items.forEach(item => {
+                    if (newItem !== item) {
+                        newItems.push(newItem);
+                    }
+                });
+            });
+            notifications.forEach(notification => {
+                newItems.forEach(newItem => {
+                    if (newItem.description === notification) {
+                        playNotification();
+                    }
+                });
+            });
             recentRealmsChecked = result.realmsChecked;
             items = result.items;
             realmsChecked = result.realmsChecked;

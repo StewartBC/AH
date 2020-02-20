@@ -584,6 +584,63 @@ var corruptionReference = [
 ];
 var items = [];
 var realmsChecked = 0;
+function getNewAuctions() {
+    realmsChecked = 0;
+    console.log(token)
+    var itemList = [];
+    realms.forEach(realm => {
+        request(`https://us.api.blizzard.com/data/wow/connected-realm/${realm.id}/auctions?namespace=dynamic-us&locale=en_US&access_token=${token}`, { json: true }, function (error, response, html) {
+            if (error) {
+                console.log(error)
+                blizzard.getApplicationToken().then(response => {
+                    console.log(response.data.access_token);
+                    token = response.data.access_token;
+                    blizzard.defaults.token = response.data.access_token
+                });
+            } else {
+                realmsChecked++;
+                response.body.auctions.forEach(auction => {
+                    itemReference.forEach(reference => {
+                        if (auction.item.id === reference.id) {
+                            var item = {
+                                description: reference.description,
+                                price: Math.round(auction.buyout / 10000),
+                                priceString: "",
+                                realm: realm.names[0],
+                                corruption: "",
+                                ilvl: 0,
+                                socket: false
+                            }
+                            corruptionReference.forEach(corruption => {
+                                auction.item.bonus_lists.forEach(bonus => {
+                                    if (bonus === 4822) {
+                                        item.ilvl = 445;
+                                    } else if (bonus === 4823) {
+                                        item.ilvl = 460;
+                                    } else if (bonus === 4824) {
+                                        item.ilvl = 475;
+                                    } else if(bonus === 4825) {
+                                        item.ilvl = 430;
+                                    }
+                                    if (corruption.id === bonus) {
+                                        item.corruption = corruption.name;
+                                    }
+                                    if (bonus === 1808) {
+                                        item.socket = true;
+                                    }
+                                });
+                            });
+                            item.priceString = item.price.toLocaleString();
+                            itemList.push(item);
+                        }
+                    });
+                });
+            }
+        });
+    });
+    items = itemList;
+    return itemList;
+}
 function getAuctions() {
     realmsChecked = 0;
     console.log(token)
@@ -666,8 +723,8 @@ app.get("/auctions", function (req, res) {
 });
 
 setTimeout(function(){ getAuctions(); }, 3000);
+setTimeout(function(){ setInterval(function() { getNewAuctions(); }, 108000);; }, 3000);
 
-// setInterval(function() { getAuctions(); }, 10800);
 
 app.get("/auctions/:realmID", function (req, res) {
     const realmID = req.params.realmID;
