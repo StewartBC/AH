@@ -996,7 +996,7 @@ function getNewItems() {
 
 getItems();
 
-setInterval(function(){ getNewItems(); }, 1000);
+setInterval(function(){ getNewItems(); }, 36000);
 setInterval(function(){ getItems(); }, 1000);
 
 
