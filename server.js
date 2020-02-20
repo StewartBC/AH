@@ -599,7 +599,7 @@ function getNewAuctions() {
                     blizzard.defaults.token = response.data.access_token
                 });
             } else {
-                if (response.body !== undefined) {
+                if (response.body.auctions !== undefined) {
                     response.body.auctions.forEach(auction => {
                         itemReference.forEach(reference => {
                             if (auction.item.id === reference.id) {
