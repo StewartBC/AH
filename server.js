@@ -727,7 +727,7 @@ app.get("/auctions", function (req, res) {
 });
 
 setTimeout(function(){ getAuctions(); }, 3000);
-setTimeout(function(){ setInterval(function() { getNewAuctions(); }, 108000); }, 3000);
+// setTimeout(function(){ setInterval(function() { getNewAuctions(); }, 108000); }, 3000);
 
 
 app.get("/auctions/:realmID", function (req, res) {
