@@ -590,6 +590,7 @@ function getNewAuctions() {
     var itemList = [];
     realms.forEach(realm => {
         request(`https://us.api.blizzard.com/data/wow/connected-realm/${realm.id}/auctions?namespace=dynamic-us&locale=en_US&access_token=${token}`, { json: true }, function (error, response, html) {
+            realmsChecked++;
             if (error) {
                 console.log(error)
                 blizzard.getApplicationToken().then(response => {
@@ -598,43 +599,46 @@ function getNewAuctions() {
                     blizzard.defaults.token = response.data.access_token
                 });
             } else {
-                realmsChecked++;
-                response.body.auctions.forEach(auction => {
-                    itemReference.forEach(reference => {
-                        if (auction.item.id === reference.id) {
-                            var item = {
-                                description: reference.description,
-                                price: Math.round(auction.buyout / 10000),
-                                priceString: "",
-                                realm: realm.names[0],
-                                corruption: "",
-                                ilvl: 0,
-                                socket: false
-                            }
-                            corruptionReference.forEach(corruption => {
-                                auction.item.bonus_lists.forEach(bonus => {
-                                    if (bonus === 4822) {
-                                        item.ilvl = 445;
-                                    } else if (bonus === 4823) {
-                                        item.ilvl = 460;
-                                    } else if (bonus === 4824) {
-                                        item.ilvl = 475;
-                                    } else if(bonus === 4825) {
-                                        item.ilvl = 430;
-                                    }
-                                    if (corruption.id === bonus) {
-                                        item.corruption = corruption.name;
-                                    }
-                                    if (bonus === 1808) {
-                                        item.socket = true;
-                                    }
+                if (response.body !== undefined) {
+                    response.body.auctions.forEach(auction => {
+                        itemReference.forEach(reference => {
+                            if (auction.item.id === reference.id) {
+                                var item = {
+                                    description: reference.description,
+                                    price: Math.round(auction.buyout / 10000),
+                                    priceString: "",
+                                    realm: realm.names[0],
+                                    corruption: "",
+                                    ilvl: 0,
+                                    socket: false
+                                }
+                                corruptionReference.forEach(corruption => {
+                                    auction.item.bonus_lists.forEach(bonus => {
+                                        if (bonus === 4822) {
+                                            item.ilvl = 445;
+                                        } else if (bonus === 4823) {
+                                            item.ilvl = 460;
+                                        } else if (bonus === 4824) {
+                                            item.ilvl = 475;
+                                        } else if(bonus === 4825) {
+                                            item.ilvl = 430;
+                                        }
+                                        if (corruption.id === bonus) {
+                                            item.corruption = corruption.name;
+                                        }
+                                        if (bonus === 1808) {
+                                            item.socket = true;
+                                        }
+                                    });
                                 });
-                            });
-                            item.priceString = item.price.toLocaleString();
-                            itemList.push(item);
-                        }
+                                item.priceString = item.price.toLocaleString();
+                                itemList.push(item);
+                            }
+                        });
                     });
-                });
+                } else {
+                    console.log(`${realm.id} not defined`);
+                }
             }
         });
     });

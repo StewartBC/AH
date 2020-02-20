@@ -954,6 +954,7 @@ function getItems() {
 }
 
 function getNewItems() {
+    if (realmsChecked >= realms.length) {
         $.ajax({
             type: "GET",
             url: `/auctions`
@@ -985,6 +986,7 @@ function getNewItems() {
             items = result.items;
             realmsChecked = result.realmsChecked;
         }); 
+    }
 }
 
 getItems();
